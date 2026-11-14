@@ -1,5 +1,15 @@
+import Hero from '../components/Hero.jsx'
+import Navbar from '../components/Navbar.jsx'
+
 function Home() {
-  return <h1 className="text-4xl font-bold text-ink">Veylo</h1>
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+      </main>
+    </>
+  )
 }
 
 export default Home
