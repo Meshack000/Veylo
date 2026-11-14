@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --color-ink: #111111;
+  --color-body: #333333;
+  --color-muted: #6B6B6B;
+  --color-line: #D9D9D9;
+  --color-surface: #F2F2F2;
+}
+
+body {
+  @apply font-sans text-body bg-white;
+}
