@@ -1,15 +1,18 @@
 // Categories.jsx
-// The "Browse by category" section: a heading and six clickable tiles.
+// The "Browse by category" section: a heading and six clickable tiles with icons.
+
+import { Wrench, Zap, Scissors, Shirt, ChefHat, GraduationCap } from "lucide-react";
 
 function Categories() {
-  // The list of categories. To add one later, we only add a name here.
+  // The list of categories. Each one has a name and an icon.
+  // To add a category later, we add one line here.
   const categories = [
-    "Plumbing",
-    "Electrical",
-    "Hair and Beauty",
-    "Tailoring",
-    "Catering",
-    "Tutoring",
+    { name: "Plumbing", Icon: Wrench },
+    { name: "Electrical", Icon: Zap },
+    { name: "Hair and Beauty", Icon: Scissors },
+    { name: "Tailoring", Icon: Shirt },
+    { name: "Catering", Icon: ChefHat },
+    { name: "Tutoring", Icon: GraduationCap },
   ];
 
   return (
@@ -34,14 +37,16 @@ function Categories() {
 
         {/* Tiles */}
         <div className="mt-12 grid grid-cols-2 gap-7 sm:grid-cols-3 lg:grid-cols-6">
-          {categories.map((name) => (
+          {categories.map(({ name, Icon }) => (
             <a
               key={name}
               href="#"
               className="group flex h-40 flex-col items-center justify-center gap-4 rounded-[20px] bg-brand-soft text-lg font-medium text-ink transition hover:bg-brand hover:text-white"
             >
-              {/* Icon circle (we will add real icons later) */}
-              <span className="h-14 w-14 rounded-full bg-surface transition group-hover:bg-accent" />
+              {/* Icon circle: white by default, gold when you hover the tile */}
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-surface text-brand transition group-hover:bg-accent group-hover:text-ink">
+                <Icon size={28} strokeWidth={2} />
+              </span>
               {name}
             </a>
           ))}
