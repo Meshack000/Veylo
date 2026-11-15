@@ -1,12 +1,16 @@
 // Hero.jsx
-// The big section under the navbar: headline, search bar and image.
+// The big section under the navbar: headline, search bar and the green visual.
 
 import { useState } from "react";
+import ProviderCard from "./ProviderCard";
 
 function Hero() {
   // These two values remember what the user types in the search bar
   const [service, setService] = useState("");
   const [area, setArea] = useState("");
+
+  // Popular service chips under the search bar
+  const popular = ["Plumbing", "Tailoring", "Catering", "Tutoring"];
 
   // Runs when the user clicks Search (for now it only logs the values)
   function handleSearch(event) {
@@ -15,22 +19,26 @@ function Hero() {
   }
 
   return (
-    <section className="bg-surface">
-      <div className="mx-auto flex min-h-[640px] w-full max-w-[1440px] items-center justify-between gap-12 px-6 py-16 lg:px-20">
+    <section className="bg-page">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center gap-16 px-6 py-16 lg:px-20 lg:py-20">
         {/* Left side: text and search */}
-        <div className="w-full max-w-[860px]">
-          <h1 className="max-w-[700px] text-5xl font-bold leading-[1.2] text-ink lg:text-[64px]">
+        <div className="flex flex-1 flex-col gap-6">
+          <p className="text-lg font-semibold uppercase tracking-[0.08em] text-brand">
+            Trusted local services · Sunyani
+          </p>
+
+          <h1 className="font-heading text-5xl font-bold leading-[1.2] tracking-tight text-ink lg:text-[64px]">
             Find trusted local services in Sunyani.
           </h1>
 
-          <p className="mt-6 max-w-[600px] text-2xl leading-normal text-body">
+          <p className="text-2xl leading-normal text-body">
             Book plumbers, tailors, caterers, tutors and more, all in one place.
           </p>
 
           {/* Search bar */}
           <form
             onSubmit={handleSearch}
-            className="mt-10 flex h-[72px] w-full items-center rounded-xl border-2 border-ink bg-white pl-8 pr-2"
+            className="flex h-[72px] items-center gap-4 rounded-xl border-2 border-ink bg-surface pl-8 pr-2"
           >
             <input
               type="text"
@@ -41,28 +49,61 @@ function Hero() {
             />
 
             {/* Thin line between the two fields */}
-            <span className="mx-6 hidden h-10 w-px bg-line sm:block" />
+            <span className="hidden h-10 w-px bg-line sm:block" />
 
             <input
               type="text"
               value={area}
               onChange={(e) => setArea(e.target.value)}
               placeholder="Area in Sunyani"
-              className="hidden min-w-0 flex-1 bg-transparent text-xl text-ink outline-none placeholder:text-muted sm:block"
+              className="hidden w-44 shrink-0 bg-transparent text-xl text-ink outline-none placeholder:text-muted sm:block"
             />
 
             <button
               type="submit"
-              className="ml-4 h-14 w-[140px] rounded-[10px] bg-ink text-xl font-medium text-white"
+              className="h-14 shrink-0 rounded-xl bg-brand px-8 text-xl font-semibold text-white transition hover:bg-brand-dark"
             >
               Search
             </button>
           </form>
+
+          {/* Popular chips */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-lg text-muted">Popular:</span>
+            {popular.map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-subtle px-4 py-1 text-base text-body"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Right side: image placeholder (hidden on small screens) */}
-        <div className="hidden h-[440px] w-[360px] shrink-0 items-center justify-center rounded-[20px] bg-line text-xl font-medium text-muted lg:flex">
-          Image
+        {/* Right side: green visual (hidden on small screens) */}
+        <div className="relative hidden h-[520px] w-[440px] shrink-0 overflow-hidden rounded-[20px] bg-brand lg:block">
+          {/* Decorative circles */}
+          <div className="absolute -top-[120px] left-[190px] h-[380px] w-[380px] rounded-full bg-brand-dark" />
+          <div className="absolute -left-[50px] top-[410px] h-[150px] w-[150px] rounded-full bg-accent" />
+
+          {/* Badges */}
+          <span className="absolute left-6 top-10 rounded-full bg-accent-soft px-4 py-1 text-base text-ink">
+            Verified providers
+          </span>
+          <span className="absolute left-6 top-[88px] rounded-full bg-brand-soft px-4 py-1 text-base text-brand">
+            Student and teacher gigs
+          </span>
+
+          {/* Sample provider card */}
+          <ProviderCard
+            className="absolute left-[17px] top-[150px] w-[405px]"
+            name="Adom Plumbing Works"
+            service="Plumbing · Sunyani"
+            rating="4.8"
+            reviews="24"
+            tag="Available today"
+          />
         </div>
       </div>
     </section>

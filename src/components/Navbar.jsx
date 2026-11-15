@@ -3,12 +3,14 @@
 
 function Navbar() {
   return (
-    <header className="h-20 border-b border-line bg-white">
+    <header className="h-20 border-b border-line bg-surface">
       <nav className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-6 lg:px-20">
-        {/* Logo: grey square placeholder + brand name */}
+        {/* Logo: green square with a V, then the brand name */}
         <a href="/" className="flex items-center gap-3">
-          <span className="h-10 w-10 rounded-lg bg-line" />
-          <span className="text-2xl font-semibold text-ink">Veylo</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand font-heading text-2xl font-bold text-white">
+            V
+          </span>
+          <span className="font-heading text-2xl font-semibold text-ink">Veylo</span>
         </a>
 
         {/* Links (hidden on small screens) */}
@@ -22,13 +24,13 @@ function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href="/login"
-            className="hidden h-11 w-[100px] items-center justify-center rounded-lg border-2 border-ink text-lg font-medium text-ink sm:flex"
+            className="hidden h-14 items-center justify-center rounded-xl border-2 border-brand px-8 text-xl font-semibold text-brand transition hover:bg-brand-soft sm:flex"
           >
             Log in
           </a>
           <a
             href="/signup"
-            className="flex h-11 w-[120px] items-center justify-center rounded-lg bg-ink text-lg font-medium text-white"
+            className="flex h-14 items-center justify-center rounded-xl bg-brand px-8 text-xl font-semibold text-white transition hover:bg-brand-dark"
           >
             Sign up
           </a>
